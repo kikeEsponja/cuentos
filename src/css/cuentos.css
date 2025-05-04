@@ -1,0 +1,40 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #fdfcf8;
+    color: #333;
+    margin: 0;
+    padding: 2em;
+  }
+  
+  li{
+    list-style: none;
+  }
+  
+  .titulo {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 2em;
+  }
+  
+  .cuento {
+    background-color: #fff;
+    padding: 0.5em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .volver {
+    display: block;
+    margin-top: 2em;
+    text-align: center;
+    text-decoration: none;
+    color: #0077cc;
+  }
+  .visor{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formateador de cuentos</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      padding: 2em;
+      background: #f4f4f4;
+      max-width: 800px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 1em;
+    }
+    #salida {
+      background: #fff;
+      padding: 1em;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+    button {
+      padding: 0.5em 1em;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Formateador de cuentos</h1>
+  <p>Pega aquí el texto crudo:</p>
+  <textarea id="entrada"></textarea>
+  <button onclick="formatear()">Formatear</button>
+
+  <h2>HTML generado:</h2>
+  <div id="salida"></div>
+  <button id="volver">Volver</button>
+  <script>
+    function formatear() {
+      const texto = document.getElementById("entrada").value;
+      const lineas = texto.split(/\n+/); // divide por saltos de línea
+      let resultado = "";
+
+      lineas.forEach(linea => {
+        linea = linea.trim();
+        if (linea.startsWith("—") || linea.startsWith("\"") || linea.startsWith("“")) {
+          resultado += `<p>${linea}</p>\n`;
+        } else if (linea !== "") {
+          resultado += `<p>${linea}</p>\n`;
+        }
+      });
+
+      document.getElementById("salida").innerText = resultado;
+    }
+  </script>
+  <script src="../js/cuentos.js"></script>
+</body>
+</html>
