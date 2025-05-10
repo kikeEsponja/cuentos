@@ -38,3 +38,16 @@ body {
     width: 100%;
     height: 100%;
   }
+  @media screen and (max-width: 600px) {
+    body {
+      padding: 0.5em;
+      max-width: 100%;
+    }
+    .titulo {
+      font-size: 1.5em;
+    }
+    .cuento {
+      padding: 0.5em;
+    }
+    
+  }
