@@ -29,7 +29,7 @@ body {
     padding: 1em;
     border-radius: 5px;
   }
-  @media(max-width: 400px) {
+  @media(max-width: 500px) {
     body {
       padding: 0;
       max-width: 98%;
