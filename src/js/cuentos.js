@@ -1,31 +1,23 @@
+// Obtener parámetro "cuento" de la URL
+const params = new URLSearchParams(window.location.search);
+const nombreCuento = params.get("cuento");
+
+if (nombreCuento) {
+  fetch(`/src/docs/${nombreCuento}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("contenido-cuento").innerHTML = html;
+    })
+    .catch(err => {
+      document.getElementById("contenido-cuento").innerHTML =
+        "<p>Lo siento, no se pudo cargar el cuento.</p>";
+    });
+} else {
+  document.getElementById("contenido-cuento").innerHTML =
+    "<p>No se ha seleccionado ningún cuento.</p>";
+}
 
 const volver = document.getElementById("volver");
 volver.addEventListener("click", () => {
-  window.history.back();
+  window.history.back()
 });
-
-const params = new URLSearchParams(window.location.search);
-const nombre = params.get("cuento");
-
-        // Diccionario para mostrar títulos bonitos
-        const titulos = {
-          "revolucion": "Nunca hubo una revolución",
-          "en_silencio": "En silencio",
-          "encuentro_cercano": "Encuentro cercano",
-          "la_prueba": "La Prueba"
-        // Puedes agregar más: "nombre-del-archivo": "Título Bonito"
-      };
-
-      const titulo = titulos[nombre] || "Cuento desconocido";
-  
-      // Actualizar título y encabezado
-      document.title = `${titulo} - Mesa de lectura`;
-      document.getElementById("titulo").textContent = titulo;
-  
-
-if(nombre){
-  const visor = document.getElementById("visor");
-  visor.innerHTML = `<iframe src="../docs/${nombre}.pdf" type="application/pdf" class="visor"></iframe>`;
-}else{
-  document.getElementById("visor").innerHTML = "<p>No se ha seleccionado ningún cuento.</p>";
-}

@@ -38,23 +38,42 @@
   <div id="salida"></div>
   <button id="volver">Volver</button>
   <script>
-    function formatear() {
-      const texto = document.getElementById("entrada").value;
-      const lineas = texto.split(/\n+/); // divide por saltos de línea
-      let resultado = "";
+function formatear() {
+  const texto = document.getElementById("entrada").value;
+  const lineas = texto.split(/\n+/); // divide por saltos de línea
+  let resultado = "";
 
-      lineas.forEach(linea => {
-        linea = linea.trim();
-        if (linea.startsWith("—") || linea.startsWith("\"") || linea.startsWith("“")) {
-          resultado += `<p>${linea}</p>\n`;
-        } else if (linea !== "") {
-          resultado += `<p>${linea}</p>\n`;
+  lineas.forEach(linea => {
+    linea = linea.trim();
+    if (linea === "") return;
+
+    // Si contiene diálogos múltiples en una sola línea (-...-)
+    if ((linea.match(/-/g) || []).length >= 2) {
+      // dividir por diálogo, conservando la raya
+      const partes = linea.split(/(-[^-]+-)/g).filter(p => p.trim() !== "");
+      partes.forEach(parte => {
+        if (parte.startsWith("-") && parte.endsWith("-")) {
+          resultado += `<p class="dialogo">${parte}</p>\n`;
+        } else {
+          resultado += `<p>${parte}</p>\n`;
         }
       });
-
-      document.getElementById("salida").innerText = resultado;
+    } else if (linea.startsWith("-")) {
+      // Línea de diálogo simple
+      resultado += `<p class="dialogo">${linea}</p>\n`;
+    } else {
+      // Párrafo normal
+      resultado += `<p>${linea}</p>\n`;
     }
+  });
+
+  document.getElementById("salida").innerText = resultado;
+}
+const volver = document.getElementById("volver");
+volver.addEventListener("click", () => {
+  window.history.back()
+});
+
   </script>
-  <script src="../js/cuentos.js"></script>
 </body>
 </html>
