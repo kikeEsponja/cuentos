@@ -37,43 +37,78 @@
   <h2>HTML generado:</h2>
   <div id="salida"></div>
   <button id="volver">Volver</button>
+  <!--<button id="convertir">Convertir a cuento</button>-->
   <script>
-function formatear() {
-  const texto = document.getElementById("entrada").value;
-  const lineas = texto.split(/\n+/); // divide por saltos de línea
-  let resultado = "";
+    function formatear() {
+      const texto = document.getElementById("entrada").value;
+      const lineas = texto.split(/\n+/); // divide por saltos de línea
+      let resultado = "";
 
-  lineas.forEach(linea => {
-    linea = linea.trim();
-    if (linea === "") return;
+      lineas.forEach(linea => {
+        linea = linea.trim();
+        if (linea === "") return;
 
-    // Si contiene diálogos múltiples en una sola línea (-...-)
-    if ((linea.match(/-/g) || []).length >= 2) {
-      // dividir por diálogo, conservando la raya
-      const partes = linea.split(/(-[^-]+-)/g).filter(p => p.trim() !== "");
-      partes.forEach(parte => {
-        if (parte.startsWith("-") && parte.endsWith("-")) {
-          resultado += `<p class="dialogo">${parte}</p>\n`;
+        // Si contiene diálogos múltiples en una sola línea (-...-)
+        if ((linea.match(/-/g) || []).length >= 2) {
+          // dividir por diálogo, conservando la raya
+          const partes = linea.split(/(-[^-]+-)/g).filter(p => p.trim() !== "");
+          partes.forEach(parte => {
+          if (parte.startsWith("-") && parte.endsWith("-")) {
+            resultado += `<p class="dialogo">${parte}</p>\n`;
+          } else {
+            resultado += `<p>${parte}</p>\n`;
+          }
+        });
+        } else if (linea.startsWith("-")) {
+          // Línea de diálogo simple
+          resultado += `<p class="dialogo">${linea}</p>\n`;
         } else {
-          resultado += `<p>${parte}</p>\n`;
+          // Párrafo normal
+          resultado += `<p>${linea}</p>\n`;
         }
       });
-    } else if (linea.startsWith("-")) {
-      // Línea de diálogo simple
-      resultado += `<p class="dialogo">${linea}</p>\n`;
-    } else {
-      // Párrafo normal
-      resultado += `<p>${linea}</p>\n`;
-    }
-  });
 
-  document.getElementById("salida").innerText = resultado;
-}
-const volver = document.getElementById("volver");
-volver.addEventListener("click", () => {
-  window.history.back()
+      document.getElementById("salida").innerText = resultado;
+    }
+
+    const volver = document.getElementById("volver");
+    volver.addEventListener("click", () => {
+      window.history.back()
+    });
+</script>
+<!--<script>
+    // Función para convertir el texto formateado a un archivo HTML
+
+  const convertir = document.getElementById("convertir");
+  convertir.addEventListener("click", () => {
+  const texto = document.getElementById("salida").innerText;
+  const urlParams = new URLSearchParams(window.location.search);
+  const cuento = urlParams.get('cuento');
+  const nuevoTexto = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${cuento}</title>
+  <body>
+    <div class="container">
+      <h1>${cuento}</h1>
+      <div class="contenido">${texto}</div>
+    </div>
+  </body>
+  </html>`;
+  const blob = new Blob([nuevoTexto], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${cuento}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 });
 
-  </script>
+  </script>-->
 </body>
 </html>
