@@ -8,11 +8,26 @@
     <title>Document</title>
 </head>
 <body>
-    <center>
-        <h1>Cuentos</h1>
-        <a href="./src/html/cuentos.html">Cuentos</a>
-        <a href="./src/html/taller.html">taller</a>
-    </center>
+    <div class="contenedor-hero">
+        <div class="hero">
+            <div class="contenedor-elementos">
+                <button id="cuentos" class="aqui">Cuentos</button>
+                <button id="taller" class="aqui">taller</button>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script>
+        const cuentos = document.getElementById('cuentos');
+        const taller = document.getElementById('taller');
+
+        cuentos.addEventListener('click', () => {
+            window.location.href = './src/html/cuentos.html';
+        });
+
+        taller.addEventListener('click', () => {
+            window.location.href = './src/html/taller.html';
+        });
+    </script>
 </body>
 </html>
