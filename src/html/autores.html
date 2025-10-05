@@ -71,24 +71,29 @@
     </center>
     <script>
         const API = "https://relatos-backend-2.onrender.com";
-
+            
         async function cargarAutores() {
           const res = await fetch(`${API}/autores`);
           const autores = await res.json();
-          
-          console.log("autores recibidos", autores);
-          
           const contenedor = document.getElementById("autores");
-          contenedor.innerHTML = autores.map(autor => `
-            <a href="./cuentos.html?autor=${encodeURIComponent(autor)}">
+        
+          for (const autor of autores) {
+            // Pido un solo relato de ese autor para obtener su foto_autor
+            const r = await fetch(`${API}/relatos/${autor}`);
+            const relatosAutor = await r.json();
+            const fotoAutor = relatosAutor[0]?.foto_autor || "./src/img/default_autor.jpg";
+        
+            contenedor.innerHTML += `
+              <a href="./cuentos.html?autor=${encodeURIComponent(autor)}">
                 <div class="galeria">
-                    <img src="src/docs/kike_docs/portada/yop_anime_small.png" alt="portada" class="cuento">
-                    <p>${autor}</p>
+                  <img src="${fotoAutor}" alt="foto de ${autor}" class="autor">
+                  <p>${autor}</p>
                 </div>
-            </a>
-          `).join("");
+              </a>
+            `;
+          }
         }
-    
+        
         cargarAutores();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
