@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo conexión</title>
+</head>
+<body>
+  <h1>Conexión Front → Back → DB</h1>
+  <input id="mensaje" placeholder="Escribe algo...">
+  <button onclick="enviar()">Enviar</button>
+  <ul id="lista"></ul>
+
+  <script>
+    const API = "https://relatos-backend-2.onrender.com/";
+
+    async function enviar() {
+      const texto = document.getElementById("mensaje").value;
+      await fetch(`${API}/mensajes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texto })
+      });
+      cargar();
+    }
+
+    async function cargar() {
+      const res = await fetch(`${API}/mensajes`);
+      const data = await res.json();
+      document.getElementById("lista").innerHTML =
+        data.map(m => `<li>${m.texto}</li>`).join("");
+    }
+
+    cargar();
+  </script>
+</body>
+</html>
