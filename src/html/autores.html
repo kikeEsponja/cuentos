@@ -75,14 +75,16 @@
         async function cargarAutores() {
           const res = await fetch(`${API}/autores`);
           const autores = await res.json();
-        
+          
+          console.log("autores recibidos", autores);
+          
           const contenedor = document.getElementById("autores");
           contenedor.innerHTML = autores.map(autor => `
             <a href="./cuentos.html?autor=${encodeURIComponent(autor)}">
-              <div class="galeria">
-                <img src="./src/img/libros.jpg" alt="portada" class="cuento">
-                <p>${autor}</p>
-              </div>
+                <div class="galeria">
+                    <img src="src/docs/kike_docs/portada/yop_anime_small.png" alt="portada" class="cuento">
+                    <p>${autor}</p>
+                </div>
             </a>
           `).join("");
         }
