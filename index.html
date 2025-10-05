@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/css/mesa.css">
-    <link rel="icon" href="../img/book.svg" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <title>Cuentos</title>
+  <meta charset="UTF-8">
+  <title>Demo conexión</title>
 </head>
 <body>
-    <div class="contenedor-hero">
-        <div class="hero">
-            <div class="contenedor-elementos">
-                <button id="cuentos" class="aqui">Cuentos</button>
-                <button id="taller" class="aqui">taller</button>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script>
-        const cuentos = document.getElementById('cuentos');
-        const taller = document.getElementById('taller');
+  <h1>Conexión Front → Back → DB</h1>
+  <input id="mensaje" placeholder="Escribe algo...">
+  <button onclick="enviar()">Enviar</button>
+  <ul id="lista"></ul>
 
-        cuentos.addEventListener('click', () => {
-            window.location.href = './src/html/autores.html';
-        });
+  <script>
+    const API = "https://relatos-backend-2.onrender.com/";
 
-        taller.addEventListener('click', () => {
-            window.location.href = './src/html/taller.html';
-        });
-    </script>
+    async function enviar() {
+      const texto = document.getElementById("mensaje").value;
+      await fetch(`${API}/mensajes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ texto })
+      });
+      cargar();
+    }
+
+    async function cargar() {
+      const res = await fetch(`${API}/mensajes`);
+      const data = await res.json();
+      document.getElementById("lista").innerHTML =
+        data.map(m => `<li>${m.texto}</li>`).join("");
+    }
+
+    cargar();
+  </script>
 </body>
 </html>
