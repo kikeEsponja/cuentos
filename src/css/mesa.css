@@ -22,7 +22,6 @@ body {
 a{
   text-decoration: none;
   color: #333;
-  width: 200px;
   margin: 0.5%;
 }
 .titulo {
@@ -63,12 +62,12 @@ a{
   flex-direction: column;
   border: #333 solid 1px;
   border-radius: 5px;
-  width: 100%;
+  width: 300px;
   height: 350px
 }
 .galeria > img{
   width: 100%;
-  height: auto;
+  height: 300px;
   border-radius: 6px;
 }
 @media(max-width: 400px) {
