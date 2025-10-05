@@ -41,7 +41,7 @@
                 // Pido un solo relato de ese autor para obtener su foto_autor
                 const r = await fetch(`${API}/relatos/${autor}`);
                 const relatosAutor = await r.json();
-                const fotoAutor = relatosAutor[0]?.foto_autor || "./src/img/default_autor.jpg";
+                const fotoAutor = relatosAutor[0]?.foto_autor || "./src/img/proximamente.png";
                 
                 loader.style.display = 'none';
                 contenedor.innerHTML += `
