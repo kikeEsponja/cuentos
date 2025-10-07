@@ -13,6 +13,7 @@
         <div class="hero">
             <div class="contenedor-elementos">
                 <button id="cuentos" class="aqui">Cuentos</button>
+                <button id="dibujos" class="aqui">Dibujos</button>
                 <button id="taller" class="aqui">taller</button>
             </div>
         </div>
@@ -21,9 +22,14 @@
     <script>
         const cuentos = document.getElementById('cuentos');
         const taller = document.getElementById('taller');
+        const dibujos = document.getElementById('dibujos');
 
         cuentos.addEventListener('click', () => {
             window.location.href = './src/html/autores.html';
+        });
+
+        dibujos.addEventListener('click', () => {
+            window.location.href = './src/html/dibujantes.html';
         });
 
         taller.addEventListener('click', () => {
