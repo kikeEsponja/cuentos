@@ -33,19 +33,19 @@
             const loader = document.getElementById('loader');
             loader.style.display = 'block';
 
-            const res = await fetch(`${API}/autores`);
+            const res = await fetch(`${API}/dibujantes`);
             const autores = await res.json();
             const contenedor = document.getElementById("autores");
         
             for (const autor of autores) {
                 // Pido un solo relato de ese autor para obtener su foto_autor
-                const r = await fetch(`${API}/relatos/${autor}`);
+                const r = await fetch(`${API}/dibujos/${autor}`);
                 const relatosAutor = await r.json();
-                const fotoAutor = relatosAutor[0]?.foto_autor || "../src/img/proximamente.png";
+                const fotoAutor = relatosAutor[0]?.foto_autor || "../../src/img/proximamente.png";
                 
                 loader.style.display = 'none';
                 contenedor.innerHTML += `
-                <a href="./cuentos.html?autor=${encodeURIComponent(autor)}">
+                <a href="./dibujos.html?autor=${encodeURIComponent(autor)}">
                 <div class="galeria">
                     <img src="${fotoAutor}" alt="foto de ${autor}" class="autor">
                     <p>${autor}</p>

@@ -33,7 +33,7 @@
         const autor = params.get("autor");
 
         async function cargarRelatos() {
-          const res = await fetch(`${API}/relatos/${autor}`);
+          const res = await fetch(`${API}/dibujos/${autor}`);
           const relatos = await res.json();
           const contenedor = document.getElementById("relatos");
         

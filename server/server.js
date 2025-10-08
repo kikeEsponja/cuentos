@@ -22,8 +22,16 @@ const RelatoSchema = new mongoose.Schema({
 	portada: String,
 	foto_autor: String,
 });
-
+const DibujoSchema = new mongoose.Schema({
+	fecha: String,
+	autor: String,
+	contenido: String,
+	titulo: String,
+	portada: String,
+	foto_autor: String,
+});
 const Relato = mongoose.model("relatos", RelatoSchema);
+const Dibujo = mongoose.model("dibujos", DibujoSchema);
 
 app.get("/", (req, res) => {
 	res.send("Servidor funcionando correctamente");
@@ -35,6 +43,14 @@ app.get("/relatos", async (req, res) => {
 		res.json(relatos);
 	}catch (error) {
 		res.status(500).json({ error: "Error al intentar obtener los relatos" })
+	}
+});
+app.get("/dibujos", async (req, res) => {
+	try{
+		const dibujos = await Dibujo.find().sort({ fecha: -1 });
+		res.json(dibujos);
+	}catch (error) {
+		res.status(500).json({ error: "Error al intentar obtener los dibujos" })
 	}
 });
 
@@ -70,11 +86,19 @@ app.get("/relatos/:autor", async (req, res) => {
 
 app.get("/dibujantes", async (req, res) => {
 	try {
-		const dibujantes = await Relato.distinct("autor");
+		const dibujantes = await Dibujo.distinct("autor");
 		res.json(dibujantes);
 	} catch (error) {
 		console.error("Error en /dibujantes:", error);
 		res.status(500).json({ error: "Error al obtener dibujantes" });
+	}
+});
+app.get("/dibujos/:autor", async (req, res) => {
+	try {
+		const dibujos = await Dibujo.find({ autor: req.params.autor });
+		res.json(dibujos);
+	} catch (error) {
+		res.status(500).json({ error: "Error al obtener relatos" });
 	}
 });
 
