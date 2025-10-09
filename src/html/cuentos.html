@@ -39,12 +39,25 @@
         
           contenedor.innerHTML = relatos.map(r => `
             <a href="${r.contenido}" target="_blank">
-              <div class="galeria">
+              <div class="galeria" onclick="registrarVisita('${r._id}', '${r.contenido}')">
                 <img src="${r.portada || '../src/img/proximamente.png'}" alt="portada del relato ${r.titulo}" class="cuento">
-                <p>${r.titulo}</p>
+                <div style="display:flex; flex-direction:column;">
+                  <p>${r.titulo}</p>
+                  <p style="font-size: 0.8em; color: gray;">(${r.visitas} visitas)</p>
+                </div>
               </div>
             </a>
           `).join("");
+        }
+
+        async function registrarVisita(id, url) {
+          try{
+            await fetch(`${API}/visita/${id}`, { method: "POST" });
+            window.open(url, "_blank");
+          }catch(error){
+            console.error("Error al registrar visita:", error);
+            window.open(url, "_blank");
+          }   
         }
 
         cargarRelatos();
