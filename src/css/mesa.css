@@ -264,6 +264,6 @@ a{
     height: 180px;
   }
     .hero{
-    background-position: calc(100% + 150px);
+    background-position: calc(100% - 150px);
   }
 }
