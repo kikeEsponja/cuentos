@@ -233,6 +233,12 @@ a{
     content: "...";
   }
 }
+@media(max-width: 500px) {
+  .galeria{
+    width: 150px;
+    height: 220px;
+  }
+}
 
 @media(max-width: 400px) {
   body {
@@ -251,8 +257,10 @@ a{
     background-size: cover;
     background-position: calc(100% + 250px);
   }
+}
+@media(max-width: 320px) {
   .galeria{
-    width: 150px;
-    height: 220px;
+    width: 100px;
+    height: 180px;
   }
 }
