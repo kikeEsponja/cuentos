@@ -233,11 +233,6 @@ a{
     content: "...";
   }
 }
-@media(max-width: 400px) {
-  .hero{
-    background-position: calc(100% + 300px);
-  }
-}
 
 @media(max-width: 400px) {
   body {
@@ -255,5 +250,9 @@ a{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: calc(100% + 250px);
+  }
+  .galeria{
+    width: 150px;
+    height: 220px;
   }
 }
