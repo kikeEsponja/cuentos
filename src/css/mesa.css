@@ -233,7 +233,7 @@ a{
     content: "...";
   }
 }
-@media(max-width: 500px) {
+@media(max-width: 600px) {
   .galeria{
     width: 150px;
     height: 220px;
@@ -262,5 +262,8 @@ a{
   .galeria{
     width: 100px;
     height: 180px;
+  }
+    .hero{
+    background-position: calc(100% + 150px);
   }
 }
