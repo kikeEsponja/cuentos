@@ -31,6 +31,29 @@
             background-size: cover; 
             background-position: calc(10px - 50px);
         }
+        .donativo{
+            background: url('./src/img/caution.webp'); 
+            background-size: cover; 
+            background-position: calc(10px - 50px);
+        }
+        .btn-danger{
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse{
+            0%{
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+            }
+            70%{
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+            }
+            100%{
+                transform: scale(1);
+                box-shadow: 0 0 0 0px rgba(220, 53, 69, 0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -48,6 +71,9 @@
                 <div class="galeria taller">
                     <button id="taller" class="aqui">taller</button>
                 </div>
+                <div class="galeria donativo">
+                    <button id="donativo" class="btn btn-danger">No hacer click aquí</button>
+                </div>
             </div>
         </div>
     </div>
@@ -63,6 +89,7 @@
         const cuentos = document.getElementById('cuentos');
         const taller = document.getElementById('taller');
         const dibujos = document.getElementById('dibujos');
+        const donativo = document.getElementById('donativo');
 
         cuentos.addEventListener('click', () => {
             window.location.href = './src/html/autores.html';
@@ -74,6 +101,10 @@
 
         taller.addEventListener('click', () => {
             window.location.href = './src/html/taller.html';
+        });
+
+        donativo.addEventListener('click', () => {
+            window.location.href = './src/html/donativo.html';
         });
     </script>
 </body>
