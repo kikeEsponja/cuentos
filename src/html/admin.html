@@ -128,12 +128,12 @@
     	<h3 class="text-danger">Zona de peligro</h3>
         <h2>Eliminar relato</h2>
         <form action="/borrar_relato" method="POST">
-            <input class="btn btn-light" type="email" id="correo_del" name="correo_del" placeholder="Correo del alumno">
+            <input class="btn btn-light" type="email" id="relato_del" name="correo_del" placeholder="Correo del alumno">
             <button class="btn btn-danger" type="submit">Borrar</button>
         </form>
         <h2>Eliminar dibujo</h2>
         <form action="/borrar_dibujo" method="POST">
-            <input class="btn btn-light" type="email" id="correo_del" name="correo_del" placeholder="Correo del alumno">
+            <input class="btn btn-light" type="email" id="dibujo_del" name="correo_del" placeholder="Correo del alumno">
             <button class="btn btn-danger" type="submit">Borrar</button>
         </form>
     </center>
@@ -156,7 +156,7 @@
             confText.style.display = "flex";
         });
         yes.addEventListener("click", function(){
-            window.location.href = "../../index.php";
+            window.location.href = "../../index.html";
         });
         no.addEventListener("click", function(){
             excelente.style.display = "block";

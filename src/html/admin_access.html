@@ -76,6 +76,14 @@
 
             <button class="btn btn-success" type="submit">Entrar</button>
         </form>
+        <div class="loader-container" id="loader">
+                <div class="loader book">
+                    <figure class="page"></figure>
+                    <figure class="page"></figure>
+                    <figure class="page"></figure>
+                </div> 
+                <h1 class="loader-text">Cargando...</h1>
+            </div>
     </center>
 </main>
 	<script>
@@ -99,6 +107,8 @@
         });
 
         const API = 'https://relatos-backend-2.onrender.com';
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
 
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -113,6 +123,7 @@
             const data = await res.json();
 
             if(data.ok){
+                loader.style.display = 'none';
                 localStorage.setItem('acceso_admin', 'permitido');
                 window.location.href = 'admin.html';
             }else{
