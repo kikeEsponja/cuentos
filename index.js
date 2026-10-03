@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let botonDibujos = document.getElementById('dibujos');
     let botonTaller = document.getElementById('taller');
     let mensajeCarrusel = document.querySelectorAll('.carrusel-item');
-    let loader = document.getElementById('loader-container');
+    let loader = document.getElementById('loader');
 
     botonCuentos.setAttribute('disabled', null);
     botonDibujos.setAttribute('disabled', null);
