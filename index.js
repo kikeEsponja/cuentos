@@ -39,17 +39,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         mensajeCarrusel[mensajeCarrusel.length -1].style.display = 'flex';
         mensajeCarrusel[mensajeCarrusel.length -1].textContent = 'Todo listo';
         
-        botonLogin.removeAttribute('disabled', null);
-        botonRegistro.removeAttribute('disabled', null);
+        botonCuentos.removeAttribute('disabled', null);
+        botonDibujos.removeAttribute('disabled', null);
+        botonTaller.removeAttribute('disabled', null);
         
         loader.style.display = 'none';
 
-        botonLogin.addEventListener('click', () =>{
+        /*botonCuentos.addEventListener('click', () =>{
             window.location.href="../vistas/login.html";
         });
 
         botonRegistro.addEventListener('click', () =>{
             window.location.href="../vistas/registro.html";
-        });
+        });*/
     }
 });

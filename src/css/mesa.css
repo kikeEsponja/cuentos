@@ -234,6 +234,37 @@ a{
     content: "...";
   }
 }
+/*=========================================CARRUSEL DE CARGA===============================================*/
+        .carrusel{
+            /*background: #00f;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 35px;
+            overflow: hidden;
+        }
+        .carrusel-inner{
+            display: flex;
+            justify-content: space-around;
+        }
+        .carrusel-item{
+            display: flex;
+            width: 200px;
+            height: 35px;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            margin: 1%;
+        }
+        .frame{
+            /*background: #ff0;
+            border: 2px solid #000;*/
+            width: 100%;
+            height: 30px;
+            position: absolute;
+        }
+/*==================================================MEDIA QUERIES========================================*/
 @media(max-width: 600px) {
   .galeria{
     width: 150px;
